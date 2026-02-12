@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sushmita ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital@0;1&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+/* Reel frame */
+.frame{
+  width:100%;
+  max-width:390px;
+  height:92vh;
+  background:black;
+  border-radius:28px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 0 70px rgba(255,120,160,.35);
+}
+
+/* Image */
+#photo{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  animation:zoom 10s linear infinite;
+  transition:opacity 2s ease;
+}
+
+/* Cinematic dark overlay */
+.overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.75), transparent 60%);
+}
+
+/* Caption */
+#caption{
+  position:absolute;
+  bottom:14%;
+  width:100%;
+  text-align:center;
+  padding:0 30px;
+  opacity:0;
+  transition:opacity 2s ease;
+}
+
+#caption span{
+  font-family:'Cormorant Garamond', serif;
+  font-size:20px;
+  letter-spacing:1px;
+  color:#f6f1f3;
+  text-shadow:0 0 20px rgba(0,0,0,.9);
+}
+
+/* Final screen */
+#final{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(160deg,#000,#17000c);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:34px;
+  color:#eee;
+}
+
+#final h1{
+  font-family:'Great Vibes', cursive;
+  font-size:42px;
+  color:#ffb6c9;
+  margin-bottom:22px;
+}
+
+#final p{
+  font-family:'Cormorant Garamond', serif;
+  font-size:16px;
+  line-height:2;
+}
+
+/* Tap screen */
+#tap{
+  position:absolute;
+  inset:0;
+  background:black;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:'Cormorant Garamond', serif;
+  font-size:18px;
+  z-index:20;
+}
+
+/* Motion */
+@keyframes zoom{
+  from{transform:scale(1)}
+  to{transform:scale(1.08)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+
+<div id="tap" onclick="start()">Tap gently ❤️</div>
+
+<audio id="music" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<img id="photo" src="img1.jpg">
+<div class="overlay"></div>
+
+<div id="caption"><span>Where everything quietly began</span></div>
+
+<div id="final">
+  <div>
+    <h1>Sushmita ❤️</h1>
+    <p>
+      Four years of love, memories, and us.<br><br>
+      I know I made mistakes.<br>
+      I know I hurt you.<br><br>
+      But my love for you was always real.<br><br>
+      I am changing myself with actions,<br>
+      not promises.<br><br>
+      Please forgive me.<br>
+      Let us not lose four beautiful years.<br><br>
+      Let us begin again — together.
+    </p>
+  </div>
+</div>
+
+</div>
+
+<script>
+let images = [
+"img1.jpg","img2.jpg","img3.jpg","img4.jpg","img5.jpg",
+"img6.jpg","img7.jpg","img8.jpg","img9.jpg","img10.jpg",
+"img11.jpg","img12.jpg","img13.jpg","img14.jpg"
+];
+
+let texts = [
+"Where everything quietly began",
+"You became my safe place",
+"Your smile felt like home",
+"We laughed without fear",
+"We dreamed without limits",
+"We grew together",
+"I made mistakes",
+"I hurt you",
+"But my love stayed honest",
+"I am changing myself",
+"With actions, not words",
+"Please forgive me",
+"Do not end four years",
+"Let us begin again"
+];
+
+let i = 0;
+let photo = document.getElementById("photo");
+let caption = document.getElementById("caption");
+let captionText = caption.querySelector("span");
+
+function start(){
+  document.getElementById("tap").style.display="none";
+  document.getElementById("music").play();
+  caption.style.opacity = 1;
+
+  setInterval(()=>{
+    i++;
+    if(i < images.length){
+      caption.style.opacity = 0;
+      photo.style.opacity = 0;
+
+      setTimeout(()=>{
+        photo.src = images[i];
+        captionText.innerText = texts[i];
+        photo.style.opacity = 1;
+        caption.style.opacity = 1;
+      }, 1500);
+    } else {
+      photo.style.display="none";
+      caption.style.display="none";
+      document.getElementById("final").style.display="flex";
+    }
+  }, 8500);
+}
+</script>
+
+</body>
+</html>
